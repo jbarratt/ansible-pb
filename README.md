@@ -2,6 +2,20 @@ Experiments with [Ansible](http://ansible.cc)
 
 All of these have only been tested on Ubuntu 12.04.
 
+## Vagrant Integration
+
+If you have [vagrant-ansible](https://github.com/dsander/vagrant-ansible) installed, you can test these by
+
+```
+$ vagrant up
+# tweak ansible playbooks
+$ vagrant provision
+```
+
+For now to test different playbooks the ``Vagrantfile`` must be tweaked.
+
+## Ansible Playbooks
+
 #### newservers
 
 Some basic configs to apply to new servers.
