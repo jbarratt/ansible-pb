@@ -3,6 +3,7 @@ require 'vagrant-ansible'
 Vagrant::Config.run do |config|
   config.vm.box     = "ubuntu-12.04"
   config.vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  config.vm.forward_port 6697, 6698
   
   config.vm.provision :ansible do |ansible|
     ansible.sudo = true
