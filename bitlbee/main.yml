@@ -1,0 +1,5 @@
+---
+- hosts: chatservers
+
+- include: stunnel.yml
+- include: bitlbee.yml

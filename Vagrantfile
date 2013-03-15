@@ -10,7 +10,7 @@ Vagrant::Config.run do |config|
     #ansible.playbook = "newservers/newservers.yml"
     #ansible.hosts = "newservers"
 
-    ansible.playbook = "bitlbee/bitlbee.yml"
+    ansible.playbook = "bitlbee/main.yml"
     ansible.hosts = "chatservers"
   end
 end

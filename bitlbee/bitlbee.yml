@@ -1,45 +1,12 @@
 ---
 - hosts: chatservers
-  
-  vars:
-    - bitlbee_ssl: /etc/ssl/private/bitlbee.crt
 
   vars_prompt:
     bitlbee_pass: "Enter the bitlbee server access password"
     bitlbee_oper_pass: "Enter the bitlbee operator password"
 
   tasks: 
-
-### Prereq
-  - name: Update APT package cache
-    action: apt update_cache=yes
-
-### STUNNEL
-  - name: Install openssl
-    apt: pkg=openssl state=installed
   
-  - name: Install stunnel
-    apt: pkg=stunnel4 state=installed
-
-  - name: Configure stunnel to start
-    action: lineinfile dest=/etc/default/stunnel4 regexp="^ENABLED" line="ENABLED=1" state=present
-    notify: restart stunnel
-
-  - name: Create stunnel config directory
-    file: path=/etc/stunnel state=directory owner=root group=root mode=0700
-
-  - name: create self-signed certificate for ${ansible_fqdn}
-    command: openssl req -x509 -nodes -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=${ansible_fqdn}" -days 36500 -newkey rsa:4096 -keyout $bitlbee_ssl -out $bitlbee_ssl creates=$bitlbee_ssl
-  
-  - name: bitlbee stunnel config
-    template: src=templates/bitlbee-stunnel.j2 dest=/etc/stunnel/bitlbee.conf owner=root group=root mode=0600
-    notify: restart stunnel
-
-  - name: Run stunnel service
-    service: name=stunnel4 enabled=yes state=started
-
-### BITLBEE
-#
   - name: Install bitlbee package
     apt: pkg=bitlbee state=installed
 
@@ -61,8 +28,6 @@
     service: name=bitlbee enabled=yes state=started
 
   handlers:
-  - name: restart stunnel
-    service: name=stunnel4 state=restarted
-
+  
   - name: restart bitlbee
     service: name=bitlbee state=restarted
