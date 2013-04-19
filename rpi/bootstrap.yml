@@ -1,0 +1,14 @@
+---
+- hosts: rpi
+  user: pi
+  sudo: True
+
+  tasks:
+  - name: manually apt-get update
+    command: apt-get update
+
+  - name: install python-apt
+    command: aptitude -y install python-apt
+
+  - name: install libnss-mdns
+    apt: name=libnss-mdns state=installed
