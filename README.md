@@ -1,4 +1,9 @@
-Experiments with [Ansible](http://ansible.cc)
+# Experiments with [Ansible](http://ansible.cc)
+
+---
+These experiments have been more or less abandoned. Feel free to use them as desired.
+If you're looking for ansible & Biltbee, check with [Stefano Maffulli](https://github.com/smaffulli?tab=repositories), who has improved it.
+---
 
 All of these have only been tested on Ubuntu 12.04.
 
